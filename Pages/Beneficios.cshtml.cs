@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OikosPortal.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Assinante")]
     public class BeneficiosModel : PageModel
     {
         public void OnGet()

@@ -14,5 +14,12 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.Entity<IdentityRole>().HasData(
+           new IdentityRole {
+               Name = "Assinante",
+               NormalizedName = "ASSINANTE"
+            }
+        );
     }
 }

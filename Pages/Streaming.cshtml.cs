@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace OikosPortal.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Assinante")]
     public class StreamingModel : PageModel
     {
         public void OnGet()

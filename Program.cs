@@ -10,13 +10,13 @@ try
 
     builder.Services.AddRazorPages();
 
-    // builder.Services.AddAuthentication()
-    // .AddGoogle(googleOptions =>
-    //     {
-    //         googleOptions.ClientId = builder.Configuration["GoogleAuth:ClientId"];
-    //         googleOptions.ClientSecret = builder.Configuration["GoogleAuth:ClientSecret"];
+    builder.Services.AddAuthentication()
+    .AddGoogle(googleOptions =>
+        {
+            googleOptions.ClientId = builder.Configuration["GoogleAuth:ClientId"];
+            googleOptions.ClientSecret = builder.Configuration["GoogleAuth:ClientSecret"];
 
-    //     });
+        });
 
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -26,6 +26,7 @@ try
     {
         opt.SignIn.RequireConfirmedEmail = false;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
     builder.Services.AddMailer(builder.Configuration);
