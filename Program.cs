@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using OikosPortal.Infra;
+using OikosPortal.Infra.BackgroundJobs;
 
 try
 {
@@ -31,7 +32,11 @@ try
 
     builder.Services.AddMailer(builder.Configuration);
 
+    builder.Services.AddScoped<VerificarAssinantesAtivos>();
+
     builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+    builder.Services.AddScheduler();
 
     var app = builder.Build();
 
@@ -41,6 +46,7 @@ try
         app.UseHsts();
     }
 
+
     app.UseHttpsRedirection();
     app.UseStaticFiles();
 
@@ -48,6 +54,11 @@ try
 
     app.UseAuthentication();
     app.UseAuthorization();
+
+    app.Services.UseScheduler(scheduler =>
+    {
+        scheduler.Schedule<VerificarAssinantesAtivos>().Daily();
+    });
 
     app.MapRazorPages();
 

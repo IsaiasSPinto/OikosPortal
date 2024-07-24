@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application/" />
     <Folder Include="wwwroot/lib/qrcodejs/" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Coravel" Version="5.0.4" />
     <PackageReference Include="Coravel.Mailer" Version="5.0.1" />
+    <PackageReference Include="EfiPay" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.7" />

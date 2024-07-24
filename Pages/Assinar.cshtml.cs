@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using OikosPortal.Common;
 using System.Security.Claims;
 
 namespace OikosPortal.Pages
@@ -27,8 +28,8 @@ namespace OikosPortal.Pages
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            await _userManager.AddToRoleAsync(user, "Assinante");
-            await _userManager.AddClaimAsync(user, new Claim("DataAssinatura", DateTime.UtcNow.ToString()));
+            await _userManager.AddToRoleAsync(user, ApplicationRoles.Assinante);
+            await _userManager.AddClaimAsync(user, new Claim(ApplicationClaims.DataAssinatura, DateTime.UtcNow.ToString()));
 
             await _signInManager.RefreshSignInAsync(user);
 
